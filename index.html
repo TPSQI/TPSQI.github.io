@@ -1,10 +1,233 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>test1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TPSQI 的个人博客</title>
+    <style>
+        /* 全局样式重置与基础设定 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+        }
+        a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #18bc9c;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .logo a {
+            color: white;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: #ecf0f1;
+            font-weight: 500;
+        }
+
+        /* 主体布局（左边文章，右边侧边栏） */
+        .main-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            display: flex;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        /* 文章列表区域 */
+        .content-area {
+            flex: 3;
+        }
+        .post-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .post-card:hover {
+            transform: translateY(-2px);
+        }
+        .post-title {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        .post-meta {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        .post-excerpt {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .read-more {
+            display: inline-block;
+            font-weight: bold;
+            color: #18bc9c;
+        }
+
+        /* 右侧侧边栏 */
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .widget {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .widget-title {
+            font-size: 1.1rem;
+            border-bottom: 2px solid #f4f7f6;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #bdc3c7;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+        .profile {
+            text-align: center;
+        }
+        .profile p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+
+        /* 移动端自适应 */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                flex: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1></h1>
-    <p>。</p>
+
+    <header>
+        <div class="header-container">
+            <div class="logo"><a href="#">TPSQI's Blog</a></div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">归档</a></li>
+                    <li><a href="#">关于我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        
+        <main class="content-area">
+            
+            <article class="post-card">
+                <h2 class="post-title"><a href="#">第一篇博客文章：使用 GitHub Pages 搭建博客</a></h2>
+                <div class="post-meta">发布于 2026年5月30日 | 分类: 技术</div>
+                <p class="post-excerpt">
+                    今天终于成功通过 GitHub 创建了属于我自己的个人博客！这是一个非常好的起点，未来我计划在这里分享我的技术心得、生活日常和奇思妙想……
+                </p>
+                <a href="#" class="read-more">阅读全文 →</a>
+            </article>
+
+            <article class="post-card">
+                <h2 class="post-title"><a href="#">探索前端开发的魅力</a></h2>
+                <div class="post-meta">发布于 2026年5月28日 | 分类: 前端</div>
+                <p class="post-excerpt">
+                    HTML、CSS 和 JavaScript 是构建互联网世界的基石。通过编写简单的代码，就能在浏览器中呈现出如此精美的界面，这正是前端开发的魅力所在……
+                </p>
+                <a href="#" class="read-more">阅读全文 →</a>
+            </article>
+
+        </main>
+
+        <aside class="sidebar">
+            
+            <div class="widget profile">
+                <div class="avatar">👨‍💻</div>
+                <h3 class="widget-title" style="border:none; margin-bottom:5px;">TPSQI</h3>
+                <p>热爱编程与技术分享的追光者。</p>
+            </div>
+
+            <div class="widget">
+                <h3 class="widget-title">文章分类</h3>
+                <ul style="list-style: none; padding-left: 5px;">
+                    <li style="margin-bottom: 8px;"><a href="#">📝 技术分享 (1)</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#">🎨 前端随笔 (1)</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#">☕ 生活感悟 (0)</a></li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 TPSQI. Powered by GitHub Pages.</p>
+    </footer>
+
 </body>
 </html>
