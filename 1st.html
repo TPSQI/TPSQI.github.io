@@ -68,13 +68,12 @@
 
         /* 主体布局（左边文章，右边侧边栏） */
         .main-container {
-            max-width: 800px;
-            margin: 40px auto;
+            max-width: 1000px;
+            margin: 30px auto;
             display: flex;
             gap: 30px;
             padding: 0 20px;
             flex: 1;
-            width: 100%;
         }
 
         /* 文章列表区域 */
@@ -83,7 +82,7 @@
         }
         .post-card {
             background: white;
-            padding: 40px;
+            padding: 25px;
             border-radius: 8px;
             margin-bottom: 25px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -173,7 +172,6 @@
 </head>
 <body>
 
-
     <header>
         <div class="header-container">
             <div class="logo"><a href="#">TPSQI's Blog</a></div>
@@ -185,20 +183,33 @@
             </nav>
         </div>
     </header>
-<body>
-
 
     <div class="main-container">
+        
         <main class="content-area">
+            
             <article class="post-card">
-                <h1>关于我</h1>
-                <hr style="margin: 15px 0; border: 0px; border-top: 1px solid #eee;">
-                <p>你是怎么找到这里的呢。</p>
-                <p>我说ai真是太好用了。</p>
+                <h2 class="post-title"><a href="1st.html">第一篇博客文章：哥们这东西怎么用啊</a></h2>
+                <div class="post-meta">发布于 2026年5月30日 | 分类: 分类？</div>
+                <p class="post-excerpt">
+                    今天终于成功通过 GitHub 创建了属于我自己的个人博客！这是一个非常好的起点（好，好吗？）这玩意到底怎么用。
+                </p>
+                <p class="post-excerpt">
+                    说实话这东西好难写，让ai给我生成了一个模板，结果我发现这个模板好丑。但至少有点东西放在这里了。以后慢慢改吧。
+                </p>
+                <p class="post-excerpt">
+                    明天放个照片上去看看行不行
+                </p>
                 <a href="index.html" class="back-home">← 返回首页</a>
             </article>
         </main>
+
+
+
     </div>
+    <footer>
+        <p>&copy; 2026 TPSQI. Powered by GitHub Pages.</p>
+    </footer>
 
 </body>
 </html>
