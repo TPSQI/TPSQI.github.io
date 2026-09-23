@@ -160,9 +160,10 @@ function run() {
   {
     const { errors, doc } = loadPage('links.html');
     assert(errors.length === 0, 'links errors: ' + errors.join(' | '));
-    assert(doc.querySelectorAll('#linkGrid .link-card').length === 6, 'link cards');
-    assert(doc.querySelectorAll('#linkGrid a.link-card').length === 0, 'no dead # friend links');
-    assert(doc.querySelectorAll('#linkGrid .link-badge').length === 6, 'pending badges');
+    assert(doc.querySelectorAll('#linkGrid a.link-card').length === 0, 'no friend link cards');
+    assert(doc.body.textContent.includes('暂无友链'), 'empty friends message');
+    assert(doc.body.textContent.includes('申请友链') === false, 'no apply section');
+    assert(doc.body.textContent.includes('欢迎交换链接') === false, 'no apply copy');
   }
 
   // ---- 搜索 ----

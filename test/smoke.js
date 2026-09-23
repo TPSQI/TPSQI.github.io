@@ -90,7 +90,7 @@ assert(unit.html.includes('<hr>'), 'unit hr');
 assert(unit.toc.length === 1, 'unit toc: ' + unit.toc.length);
 
 // links data
-assert(BLOG.links.length >= 5, 'links');
+assert(Array.isArray(BLOG.links) && BLOG.links.length === 0, 'links empty');
 assert(BLOG.author === '木质脚手架', 'author');
 
 if (fail === 0) {

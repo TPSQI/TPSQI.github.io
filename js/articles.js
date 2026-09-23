@@ -14,14 +14,7 @@ window.BLOG = {
   /* 公开联系邮箱，留空则不展示 */
   email: '',
   location: '中国',
-  links: [
-    { name: '山月行', desc: '山野与代码之间的独行笔记', url: '' },
-    { name: '纸上有光', desc: '读书、写字、慢慢发光', url: '' },
-    { name: '像素面包房', desc: '前端手艺与设计碎念', url: '' },
-    { name: '半山茶室', desc: '技术人的茶歇时间', url: '' },
-    { name: '北窗小记', desc: '窗边的生活观察报告', url: '' },
-    { name: '凌晨四点的构建', desc: '独立开发者的折腾日常', url: '' }
-  ],
+  links: [],
   categories: [
     { name: '技术', emoji: '🛠️', desc: '前端、工程化与开发中的手艺活。' },
     { name: '随笔', emoji: '✍️', desc: '关于思考、工作方式与自我整理。' },

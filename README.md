@@ -20,7 +20,7 @@
 | 样式 | 原生 CSS（自定义属性深浅色、Grid / Flex 响应式） |
 | 交互 | 原生 JavaScript（ES5+ 风格，无打包、无转译） |
 | 正文 | Markdown → 自研轻量解析器 `js/markdown.js` |
-| 数据 | `js/articles.js` 全局对象（文章、分类、标签、友链） |
+| 数据 | `js/articles.js` 全局对象（文章、分类、标签等） |
 | 预渲染 | Node.js + jsdom（`tools/build.js` 生成 `p/*.html`） |
 | 测试 | Node 断言 + jsdom 集成测试（`test/`） |
 | 托管 | GitHub Pages（`TPSQI.github.io`） |

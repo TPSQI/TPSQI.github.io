@@ -503,6 +503,15 @@
   function renderLinks() {
     var box = $('#linkGrid');
     if (!box) return;
+    if (!BLOG.links || !BLOG.links.length) {
+      box.innerHTML =
+        '<div class="empty-state" style="grid-column:1/-1">' +
+        '<div class="big">🪵</div>' +
+        '<p><strong>暂无友链</strong></p>' +
+        '<p>这里还没有交换链接的站点。</p>' +
+        '</div>';
+      return;
+    }
     box.innerHTML = BLOG.links.map(function (l) {
       var inner =
         '<div class="link-ava">' + esc(l.name.charAt(0)) + '</div>' +
