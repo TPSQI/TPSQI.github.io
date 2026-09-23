@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS 布局十年记：从 float 到 Grid · 木质脚手架</title>
+  <meta name="description" content="浮动、表格、弹性盒、网格——回顾我用过的四代布局方式，以及每一代解决了什么、又留下了什么暗伤。">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+  <meta name="theme-color" content="#8b5a2b" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="木质脚手架">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="CSS 布局十年记：从 float 到 Grid">
+  <meta property="og:description" content="浮动、表格、弹性盒、网格——回顾我用过的四代布局方式，以及每一代解决了什么、又留下了什么暗伤。">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%238b5a2b'/><text x='50' y='70' font-size='58' text-anchor='middle' fill='%23fff8ee' font-family='serif'>木</text></svg>">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>try{var t=localStorage.getItem("ws-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+<script type="application/ld+json" id="jsonld">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CSS 布局十年记：从 float 到 Grid","description":"浮动、表格、弹性盒、网格——回顾我用过的四代布局方式，以及每一代解决了什么、又留下了什么暗伤。","datePublished":"2026-08-12","dateModified":"2026-08-12","author":{"@type":"Person","name":"木质脚手架"},"publisher":{"@type":"Person","name":"木质脚手架"},"mainEntityOfPage":"../p/css-layout-decade.html","keywords":"前端，CSS"}</script></head>
+<body data-page="post" data-slug="css-layout-decade" data-root="../">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="read-progress" id="readProgress" style="width: 0%;"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">木</span>
+        <span class="js-title">木质脚手架</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html" data-nav="home">首页</a>
+        <a href="../archive.html" data-nav="archive">归档</a>
+        <a href="../categories.html" data-nav="categories">分类</a>
+        <a href="../tags.html" data-nav="tags">标签</a>
+        <a href="../links.html" data-nav="links">友链</a>
+        <a href="../about.html" data-nav="about">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="searchOpen" aria-label="搜索">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="切换到深色模式"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <div class="article-layout">
+      <div class="article-main">
+        <header class="article-header" id="postHead"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><a class="tag" href="../list.html?tag=%E5%89%8D%E7%AB%AF">#前端</a><a class="tag" href="../list.html?tag=CSS">#CSS</a></div><h1>CSS 布局十年记：从 float 到 Grid</h1><div class="article-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>木质脚手架</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>发布于 2026 年 8 月 12 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>阅读约 3 分钟</span><span><button class="btn btn-ghost" style="padding:4px 14px;font-size:12.5px" id="copyLink">复制链接</button></span></div></header>
+        <article class="article-body" id="postBody"><p>翻旧项目是一件残酷的事。2016 年写的 CSS 还躺在硬盘里，像一层一层的地质断层，记录着每个时代的「最佳实践」。</p>
+<h2 id="第一代float-时代的伪布局">第一代：float 时代的「伪布局」</h2>
+<p>最早做页面，布局全靠浮动。</p>
+<pre class="code-block" data-lang="css"><code class="language-css">.col-left  { float: left;  width: 200px; }
+.col-right { float: right; width: 300px; }
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}</code></pre>
+<p>float 本是为文字环绕设计的，被硬拉来搭框架，代价是：</p>
+<ul><li>父元素高度塌陷，必须 clearfix；</li><li>源码顺序和视觉顺序经常对不上；</li><li>自适应宽度要靠百分比 + 负 margin 手算。</li></ul>
+<p>那几年前端的口头禅是「清浮动」，像老师傅的口头禅是「敲两下」——都是在给工具的缺陷打补丁。</p>
+<h2 id="第二代display-table-的幻觉">第二代：display: table 的幻觉</h2>
+<p>短暂流行过一阵用 <code>display: table</code> 模拟表格布局，等高侧栏确实是刚需。但 HTML 语义被滥用，维护起来像在 CSS 里手写 <code>&lt;table&gt;</code>，很快被抛弃。</p>
+<h2 id="第三代flexbox一维布局的解放">第三代：Flexbox——一维布局的解放</h2>
+<p>2015 年前后 Flexbox 得到主流浏览器支持，我第一次感受到布局是「设计出来的」而不是「凑出来的」：</p>
+<pre class="code-block" data-lang="css"><code class="language-css">.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}</code></pre>
+<p><code>gap</code> 的出现更是里程碑——再也不用给中间元素加怪异的 margin。垂直居中从玄学变成了一行代码。</p>
+<p>Flex 解决了一维问题：导航、按钮组、卡片内排列。但一到二维的页面框架，还是得靠嵌套 flex 硬撑——「外层 row、内层 column」的俄罗斯套娃，写起来依旧憋屈。</p>
+<h2 id="第四代grid二维布局的正解">第四代：Grid——二维布局的正解</h2>
+<p>Grid 把「行」和「列」提升为一等公民：</p>
+<pre class="code-block" data-lang="css"><code class="language-css">.page {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header header"
+    "main   aside"
+    "footer footer";
+  gap: 24px;
+}</code></pre>
+<p>最震撼的是 <code>grid-template-areas</code>——布局直接用「画表格」的方式写出来，代码即图纸。响应式也不再需要一堆魔法数字，改一行 <code>grid-template-columns</code> 就完成桌面到移动的切换。</p>
+<h2 id="四代同堂的启示">四代同堂的启示</h2>
+<p>现在我的项目里，四代技术各有分工：</p>
+<div class="table-wrap"><table><thead><tr><th>场景</th><th>首选</th></tr></thead><tbody><tr><td>页面级框架</td><td>Grid</td></tr><tr><td>组件内部排列</td><td>Flex</td></tr><tr><td>文字环绕</td><td>float（本职工作）</td></tr><tr><td>真表格数据</td><td>table（不要抗拒它）</td></tr></tbody></table></div>
+<p>技术史读多了会发现一个规律：<strong>每一代布局方案，都在消灭上一代的「补丁文化」</strong>。而补丁消失的地方，就会生长出新的抽象。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>前几天带新人，他问我现在是不是只学 Grid 就够了。</p>
+<p>我说：你要知道 <code>clearfix</code> 为什么存在，才能真正感激 <code>gap</code>。</p>
+<p>了解暗伤，才知道新方案好在哪里——这也是我偶尔回头翻旧 CSS 的原因。</p><div class="article-end"><div class="end-mark">· · · 完 · · ·</div><p class="author-line">本文由 <b>木质脚手架</b> 撰写，欢迎以链接形式分享</p></div></article>
+
+        <nav class="post-nav" id="postNav"><a class="prev" href="../p/indie-dev-three-months.html"><span class="dir">← 上一篇</span><span class="ttl">独立开发三个月，我踩过的坑与学到的事</span></a><a class="next" href="../p/scaffolding-mindset.html"><span class="dir">下一篇 →</span><span class="ttl">前端里的「脚手架思维」：先搭骨架，再抠细节</span></a></nav>
+
+        <section class="related" id="relatedWrap" style="">
+          <div class="section-head"><h2>相关阅读</h2></div>
+          <div class="post-list" id="relatedList"><article class="post-card"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><span class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>2026 年 9 月 10 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>约 4 分钟</span></span></div><h3><a href="../p/native-js-blog.html">从零用原生 JavaScript 搭一个属于自己的博客</a></h3><p class="excerpt">不装框架、不跑构建，部署到任意静态托管即可阅读——本文记录用最朴素的 HTML/CSS/JS 搭起一个完整博客的思路：数据怎么组织、Markdown 怎么渲染、页面怎么共享逻辑。</p><div class="post-card-foot"><div class="tag-row"><a class="tag" href="../list.html?tag=%E5%89%8D%E7%AB%AF">#前端</a><a class="tag" href="../list.html?tag=JavaScript">#JavaScript</a><a class="tag" href="../list.html?tag=%E5%8D%9A%E5%AE%A2">#博客</a></div><a class="read-more" href="../p/native-js-blog.html">阅读全文 →</a></div></article><article class="post-card"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><span class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>2026 年 8 月 28 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>约 2 分钟</span></span></div><h3><a href="../p/scaffolding-mindset.html">前端里的「脚手架思维」：先搭骨架，再抠细节</a></h3><p class="excerpt">很多人写页面卡住，不是因为 CSS 难，而是因为顺序反了。分享一套我用了很久的工作方法：先立结构、再铺内容、最后上妆。</p><div class="post-card-foot"><div class="tag-row"><a class="tag" href="../list.html?tag=%E5%89%8D%E7%AB%AF">#前端</a><a class="tag" href="../list.html?tag=%E6%80%9D%E8%80%83">#思考</a><a class="tag" href="../list.html?tag=%E5%B7%A5%E7%A8%8B%E5%8C%96">#工程化</a></div><a class="read-more" href="../p/scaffolding-mindset.html">阅读全文 →</a></div></article><article class="post-card"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><span class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>2026 年 7 月 30 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>约 2 分钟</span></span></div><h3><a href="../p/indie-dev-three-months.html">独立开发三个月，我踩过的坑与学到的事</a></h3><p class="excerpt">用业余时间做了一个小工具并坚持迭代三个月，复盘那些「早知道就……」的瞬间：范围控制、动力管理，以及发布比完美更重要。</p><div class="post-card-foot"><div class="tag-row"><a class="tag" href="../list.html?tag=%E7%8B%AC%E7%AB%8B%E5%BC%80%E5%8F%91">#独立开发</a><a class="tag" href="../list.html?tag=%E6%95%88%E7%8E%87">#效率</a><a class="tag" href="../list.html?tag=%E6%80%9D%E8%80%83">#思考</a></div><a class="read-more" href="../p/indie-dev-three-months.html">阅读全文 →</a></div></article></div>
+        </section>
+
+        <section class="comments">
+          <h3>💬 本地留言</h3>
+          <p class="hint">本站为纯静态页面，尚未接入第三方评论服务。留言会保存在你当前的浏览器中（仅当前浏览器可见），不会上传到服务器。</p>
+          <form class="comment-form" id="commentForm">
+            <div class="row">
+              <input id="cName" type="text" maxlength="20" placeholder="你的昵称（可留空）">
+            </div>
+            <textarea id="cText" maxlength="1000" placeholder="写下你的想法…" required=""></textarea>
+            <button class="btn" type="submit">发表留言</button>
+          </form>
+          <ul class="comment-list" id="commentList"><div class="comments-empty">还没有留言。写下第一条（仅当前浏览器可见）</div></ul>
+        </section>
+      </div>
+
+      <aside class="sidebar toc-widget">
+        <div class="widget">
+          <div class="widget-head">目录</div>
+          <div class="widget-body">
+            <ul class="toc-list" id="tocList"><li class="lv2"><a href="#第一代float-时代的伪布局" data-toc="第一代float-时代的伪布局">第一代：float 时代的「伪布局」</a></li><li class="lv2"><a href="#第二代display-table-的幻觉" data-toc="第二代display-table-的幻觉">第二代：display: table 的幻觉</a></li><li class="lv2"><a href="#第三代flexbox一维布局的解放" data-toc="第三代flexbox一维布局的解放">第三代：Flexbox——一维布局的解放</a></li><li class="lv2"><a href="#第四代grid二维布局的正解" data-toc="第四代grid二维布局的正解">第四代：Grid——二维布局的正解</a></li><li class="lv2"><a href="#四代同堂的启示" data-toc="四代同堂的启示">四代同堂的启示</a></li><li class="lv2"><a href="#写在最后" data-toc="写在最后">写在最后</a></li></ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span class="brand-mark">木</span> 木质脚手架</div>
+        <p class="footer-desc">在代码与生活之间，搭一座临时却结实的架子。技术、阅读与生活的个人记录。</p>
+      </div>
+      <div class="footer-col">
+        <h4>站内导航</h4>
+        <ul>
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../archive.html">文章归档</a></li>
+          <li><a href="../categories.html">文章分类</a></li>
+          <li><a href="../tags.html">标签云</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>更多</h4>
+        <ul>
+          <li><a href="../links.html">友情链接</a></li>
+          <li><a href="../about.html">关于本站</a></li>
+          <li><a href="../list.html?cat=技术">技术文章</a></li>
+          <li><a href="../list.html?cat=随笔">随笔杂谈</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="yearNow">2026</span> <b>木质脚手架</b> · 由 HTML / CSS / JavaScript 手工搭建 · 持续搭建中</div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-panel">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input id="searchInput" type="text" placeholder="搜索文章、标签、关键词…" autocomplete="off">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-foot"><span>Enter 打开第一篇</span><span>Ctrl / ⌘ + K 唤起搜索</span></div>
+    </div>
+  </div>
+
+  <button class="back-top" id="backTop" aria-label="返回顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+  </button>
+  <div class="toast" id="toast"></div>
+
+  <script src="../js/markdown.js"></script>
+  <script src="../js/articles.js"></script>
+  <script src="../js/app.js"></script>
+
+
+</body></html>

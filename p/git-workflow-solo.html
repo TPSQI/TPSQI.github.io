@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一个人也值得好好提交：我的 Git 工作流 · 木质脚手架</title>
+  <meta name="description" content="没有团队评审，还要不要认真写 commit message？要。这篇整理我独居式的 Git 习惯：分支怎么开、信息怎么写、tag 怎么打。">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+  <meta name="theme-color" content="#8b5a2b" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="木质脚手架">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="一个人也值得好好提交：我的 Git 工作流">
+  <meta property="og:description" content="没有团队评审，还要不要认真写 commit message？要。这篇整理我独居式的 Git 习惯：分支怎么开、信息怎么写、tag 怎么打。">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%238b5a2b'/><text x='50' y='70' font-size='58' text-anchor='middle' fill='%23fff8ee' font-family='serif'>木</text></svg>">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>try{var t=localStorage.getItem("ws-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+<script type="application/ld+json" id="jsonld">{"@context":"https://schema.org","@type":"BlogPosting","headline":"一个人也值得好好提交：我的 Git 工作流","description":"没有团队评审，还要不要认真写 commit message？要。这篇整理我独居式的 Git 习惯：分支怎么开、信息怎么写、tag 怎么打。","datePublished":"2025-08-30","dateModified":"2025-08-30","author":{"@type":"Person","name":"木质脚手架"},"publisher":{"@type":"Person","name":"木质脚手架"},"mainEntityOfPage":"../p/git-workflow-solo.html","keywords":"Git，效率，工程化"}</script></head>
+<body data-page="post" data-slug="git-workflow-solo" data-root="../">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <div class="read-progress" id="readProgress" style="width: 0%;"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">木</span>
+        <span class="js-title">木质脚手架</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="../index.html" data-nav="home">首页</a>
+        <a href="../archive.html" data-nav="archive">归档</a>
+        <a href="../categories.html" data-nav="categories">分类</a>
+        <a href="../tags.html" data-nav="tags">标签</a>
+        <a href="../links.html" data-nav="links">友链</a>
+        <a href="../about.html" data-nav="about">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="searchOpen" aria-label="搜索">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="切换到深色模式"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <div class="article-layout">
+      <div class="article-main">
+        <header class="article-header" id="postHead"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><a class="tag" href="../list.html?tag=Git">#Git</a><a class="tag" href="../list.html?tag=%E6%95%88%E7%8E%87">#效率</a><a class="tag" href="../list.html?tag=%E5%B7%A5%E7%A8%8B%E5%8C%96">#工程化</a></div><h1>一个人也值得好好提交：我的 Git 工作流</h1><div class="article-meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>木质脚手架</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>发布于 2025 年 8 月 30 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>阅读约 2 分钟</span><span><button class="btn btn-ghost" style="padding:4px 14px;font-size:12.5px" id="copyLink">复制链接</button></span></div></header>
+        <article class="article-body" id="postBody"><p>有人问我：就你一个人写，Git 不是 <code>add .</code> 然后 <code>commit -m "update"</code> 就行了吗？</p>
+<p>三个月前的我确实这样。直到某天要回滚一个两周前的改动，对着一堆「update」「fix」「tmp」提交记录，读出了悬疑小说的感觉。</p>
+<h2 id="为什么独狼也要认真提交">为什么独狼也要认真提交</h2>
+<p>Git 提交记录本质上是<strong>写给未来自己的文档</strong>。它的读者场景非常具体：</p>
+<ul><li>半年后排查「这个行为是哪次改的」；</li><li>想撤销某个功能，但不想连带撤掉无关修复；</li><li>给项目写 CHANGELOG 时的原始素材。</li></ul>
+<p>不写清楚，未来的你会用同样的成本骂现在的你。</p>
+<h2 id="我的分支模型能少则少">我的分支模型：能少则少</h2>
+<p>复杂模型（Git Flow、trunk-based）是为多人协作的<strong>沟通成本</strong>服务的。一个人写，沟通成本为零，所以分支也应趋向零：</p>
+<pre class="code-block" data-lang="text"><code class="language-text">main          ← 随时可发布，只接受能跑的代码
+└─ feat/xxx   ← 生命周期通常不超过一天</code></pre>
+<p>规则只有三条：</p>
+<ol><li>改动超过一天还没完成 → 开分支；</li><li>当天能收尾的小改动 → 直接在 main 上分批提交；</li><li>永远不要让 <code>main</code> 处于「跑不起来」的状态。</li></ol>
+<h2 id="提交信息的三段式">提交信息的三段式</h2>
+<p>我用一个极简模板：</p>
+<pre class="code-block" data-lang="text"><code class="language-text">&lt;类型&gt;: &lt;一句话说明&gt;
+
+为什么改（可选）：
+- 补充背景、关联的 issue、权衡的取舍</code></pre>
+<p>类型我只记五个，够用了：</p>
+<div class="table-wrap"><table><thead><tr><th>类型</th><th>含义</th></tr></thead><tbody><tr><td>feat</td><td>新功能</td></tr><tr><td>fix</td><td>修 bug</td></tr><tr><td>docs</td><td>只改文档</td></tr><tr><td>style</td><td>不改逻辑的格式调整</td></tr><tr><td>refactor</td><td>重构，行为不变</td></tr></tbody></table></div>
+<p>例：</p>
+<pre class="code-block" data-lang="text"><code class="language-text">fix: 修复移动端下目录遮挡正文的问题
+
+TOC 在窄屏改为折叠面板后没有重置高度，
+滚动到二级标题时会盖住文章。改为显示时重新计算 max-height。</code></pre>
+<p>三个月下来，<code>git log --oneline</code> 已经变成我能直接「阅读」的项目编年史。</p>
+<h2 id="提交粒度一次只做一件事">提交粒度：一次只做一件事</h2>
+<p>这是最难也最值钱的习惯。判断标准很实用：</p>
+<blockquote><p><strong>这个提交的 diff，能用一句话讲清楚吗？</strong></p></blockquote>
+<p>如果回复里出现「还有」「顺便」「以及」，就该拆成两个提交。</p>
+<p>好处在回滚时会加倍奉还：<code>git revert</code> 精准打击，不必在一团毛线里抽丝。</p>
+<h2 id="打标签给里程碑留门">打标签：给里程碑留门</h2>
+<p>每完成一个可用的版本，我会打一个带说明的标签：</p>
+<pre class="code-block" data-lang="bash"><code class="language-bash">git tag -a v0.3.0 -m "支持导出 Markdown 与本地搜索"</code></pre>
+<p>一年后 <code>git tag -l</code> 列出来，就是这个项目的骨架X光片——哪根杆件什么时候立起来的，一目了然。</p>
+<h2 id="小结">小结</h2>
+<p>工具的讲究程度，反映的是你与未来自己的关系。</p>
+<p>一个人写代码已经够孤独了，别让提交记录也变成乱码。<strong>好好提交，是独行者给自己的路标。</strong></p><div class="article-end"><div class="end-mark">· · · 完 · · ·</div><p class="author-line">本文由 <b>木质脚手架</b> 撰写，欢迎以链接形式分享</p></div></article>
+
+        <nav class="post-nav" id="postNav"><a class="prev" href="../p/zen-motorcycle.html"><span class="dir">← 上一篇</span><span class="ttl">读《禅与摩托车维修艺术》：良质的追寻</span></a><a class="next" href="../p/writing-is-thinking.html"><span class="dir">下一篇 →</span><span class="ttl">写作是最好的思考方式</span></a></nav>
+
+        <section class="related" id="relatedWrap" style="">
+          <div class="section-head"><h2>相关阅读</h2></div>
+          <div class="post-list" id="relatedList"><article class="post-card"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><span class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>2026 年 9 月 10 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>约 4 分钟</span></span></div><h3><a href="../p/native-js-blog.html">从零用原生 JavaScript 搭一个属于自己的博客</a></h3><p class="excerpt">不装框架、不跑构建，部署到任意静态托管即可阅读——本文记录用最朴素的 HTML/CSS/JS 搭起一个完整博客的思路：数据怎么组织、Markdown 怎么渲染、页面怎么共享逻辑。</p><div class="post-card-foot"><div class="tag-row"><a class="tag" href="../list.html?tag=%E5%89%8D%E7%AB%AF">#前端</a><a class="tag" href="../list.html?tag=JavaScript">#JavaScript</a><a class="tag" href="../list.html?tag=%E5%8D%9A%E5%AE%A2">#博客</a></div><a class="read-more" href="../p/native-js-blog.html">阅读全文 →</a></div></article><article class="post-card"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><span class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>2026 年 8 月 28 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>约 2 分钟</span></span></div><h3><a href="../p/scaffolding-mindset.html">前端里的「脚手架思维」：先搭骨架，再抠细节</a></h3><p class="excerpt">很多人写页面卡住，不是因为 CSS 难，而是因为顺序反了。分享一套我用了很久的工作方法：先立结构、再铺内容、最后上妆。</p><div class="post-card-foot"><div class="tag-row"><a class="tag" href="../list.html?tag=%E5%89%8D%E7%AB%AF">#前端</a><a class="tag" href="../list.html?tag=%E6%80%9D%E8%80%83">#思考</a><a class="tag" href="../list.html?tag=%E5%B7%A5%E7%A8%8B%E5%8C%96">#工程化</a></div><a class="read-more" href="../p/scaffolding-mindset.html">阅读全文 →</a></div></article><article class="post-card"><div class="post-card-top"><a class="badge badge-cat" href="../list.html?cat=%E6%8A%80%E6%9C%AF">技术</a><span class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>2026 年 8 月 12 日</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>约 3 分钟</span></span></div><h3><a href="../p/css-layout-decade.html">CSS 布局十年记：从 float 到 Grid</a></h3><p class="excerpt">浮动、表格、弹性盒、网格——回顾我用过的四代布局方式，以及每一代解决了什么、又留下了什么暗伤。</p><div class="post-card-foot"><div class="tag-row"><a class="tag" href="../list.html?tag=%E5%89%8D%E7%AB%AF">#前端</a><a class="tag" href="../list.html?tag=CSS">#CSS</a></div><a class="read-more" href="../p/css-layout-decade.html">阅读全文 →</a></div></article></div>
+        </section>
+
+        <section class="comments">
+          <h3>💬 本地留言</h3>
+          <p class="hint">本站为纯静态页面，尚未接入第三方评论服务。留言会保存在你当前的浏览器中（仅当前浏览器可见），不会上传到服务器。</p>
+          <form class="comment-form" id="commentForm">
+            <div class="row">
+              <input id="cName" type="text" maxlength="20" placeholder="你的昵称（可留空）">
+            </div>
+            <textarea id="cText" maxlength="1000" placeholder="写下你的想法…" required=""></textarea>
+            <button class="btn" type="submit">发表留言</button>
+          </form>
+          <ul class="comment-list" id="commentList"><div class="comments-empty">还没有留言。写下第一条（仅当前浏览器可见）</div></ul>
+        </section>
+      </div>
+
+      <aside class="sidebar toc-widget">
+        <div class="widget">
+          <div class="widget-head">目录</div>
+          <div class="widget-body">
+            <ul class="toc-list" id="tocList"><li class="lv2"><a href="#为什么独狼也要认真提交" data-toc="为什么独狼也要认真提交">为什么独狼也要认真提交</a></li><li class="lv2"><a href="#我的分支模型能少则少" data-toc="我的分支模型能少则少">我的分支模型：能少则少</a></li><li class="lv2"><a href="#提交信息的三段式" data-toc="提交信息的三段式">提交信息的三段式</a></li><li class="lv2"><a href="#提交粒度一次只做一件事" data-toc="提交粒度一次只做一件事">提交粒度：一次只做一件事</a></li><li class="lv2"><a href="#打标签给里程碑留门" data-toc="打标签给里程碑留门">打标签：给里程碑留门</a></li><li class="lv2"><a href="#小结" data-toc="小结">小结</a></li></ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span class="brand-mark">木</span> 木质脚手架</div>
+        <p class="footer-desc">在代码与生活之间，搭一座临时却结实的架子。技术、阅读与生活的个人记录。</p>
+      </div>
+      <div class="footer-col">
+        <h4>站内导航</h4>
+        <ul>
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../archive.html">文章归档</a></li>
+          <li><a href="../categories.html">文章分类</a></li>
+          <li><a href="../tags.html">标签云</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>更多</h4>
+        <ul>
+          <li><a href="../links.html">友情链接</a></li>
+          <li><a href="../about.html">关于本站</a></li>
+          <li><a href="../list.html?cat=技术">技术文章</a></li>
+          <li><a href="../list.html?cat=随笔">随笔杂谈</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="yearNow">2026</span> <b>木质脚手架</b> · 由 HTML / CSS / JavaScript 手工搭建 · 持续搭建中</div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-panel">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input id="searchInput" type="text" placeholder="搜索文章、标签、关键词…" autocomplete="off">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-foot"><span>Enter 打开第一篇</span><span>Ctrl / ⌘ + K 唤起搜索</span></div>
+    </div>
+  </div>
+
+  <button class="back-top" id="backTop" aria-label="返回顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"></path></svg>
+  </button>
+  <div class="toast" id="toast"></div>
+
+  <script src="../js/markdown.js"></script>
+  <script src="../js/articles.js"></script>
+  <script src="../js/app.js"></script>
+
+
+</body></html>

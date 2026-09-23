@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# 配置 siteUrl 并重新构建后，此处会自动追加 Sitemap

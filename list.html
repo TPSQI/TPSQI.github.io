@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文章列表 · 木质脚手架</title>
+  <meta name="description" content="按分类或标签浏览文章。">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#8b5a2b" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#17140f" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="木质脚手架">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="文章列表 · 木质脚手架">
+  <meta property="og:description" content="按分类或标签浏览文章。">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%238b5a2b'/><text x='50' y='70' font-size='58' text-anchor='middle' fill='%23fff8ee' font-family='serif'>木</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <script>try{var t=localStorage.getItem("ws-theme");if(t)document.documentElement.setAttribute("data-theme",t);else if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
+</head>
+<body data-page="list">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">木</span>
+        <span class="js-title">木质脚手架</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html" data-nav="home">首页</a>
+        <a href="archive.html" data-nav="archive">归档</a>
+        <a href="categories.html" data-nav="categories">分类</a>
+        <a href="tags.html" data-nav="tags">标签</a>
+        <a href="links.html" data-nav="links">友链</a>
+        <a href="about.html" data-nav="about">关于</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" id="searchOpen" aria-label="搜索">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="切换主题">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="菜单">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <div class="page-hero">
+      <div class="crumb" id="listCrumb"><a href="index.html">首页</a><span>›</span><span>文章</span></div>
+      <h1><span class="icon">📂</span><span id="listTitle">文章列表</span></h1>
+      <p id="listDesc">正在加载…</p>
+    </div>
+
+    <div class="layout">
+      <div class="post-list" id="listBody"></div>
+      <aside class="sidebar" id="sidebar"></aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand"><span class="brand-mark">木</span> 木质脚手架</div>
+        <p class="footer-desc">在代码与生活之间，搭一座临时却结实的架子。</p>
+      </div>
+      <div class="footer-col">
+        <h4>站内导航</h4>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="archive.html">文章归档</a></li>
+          <li><a href="categories.html">文章分类</a></li>
+          <li><a href="tags.html">标签云</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>更多</h4>
+        <ul>
+          <li><a href="links.html">友情链接</a></li>
+          <li><a href="about.html">关于本站</a></li>
+          <li><a href="list.html?cat=技术">技术文章</a></li>
+          <li><a href="list.html?cat=随笔">随笔杂谈</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="yearNow">2026</span> <b>木质脚手架</b> · 由 HTML / CSS / JavaScript 手工搭建 · 持续搭建中</div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-panel">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input id="searchInput" type="text" placeholder="搜索文章、标签、关键词…" autocomplete="off">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-foot"><span>Enter 打开第一篇</span><span>Ctrl / ⌘ + K 唤起搜索</span></div>
+    </div>
+  </div>
+
+  <button class="back-top" id="backTop" aria-label="返回顶部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/markdown.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
